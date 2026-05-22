@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valeria Salón y Spa | Belleza y Bienestar</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3050/3050525.png" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #2b1b1f;
+      background: #fffaf7;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 20;
+      background: rgba(255, 250, 247, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(111, 61, 70, 0.12);
+    }
+
+    nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: bold;
+      color: #6f3d46;
+      letter-spacing: -0.5px;
+    }
+
+    .menu {
+      display: flex;
+      gap: 28px;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-weight: bold;
+      color: #6f3d46;
+    }
+
+    .menu a {
+      transition: color 0.25s ease;
+    }
+
+    .menu a:hover {
+      color: #a96470;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding-top: 120px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 88% 12%, #ffd6df 0%, transparent 32%),
+        radial-gradient(circle at 12% 80%, #f5e0c8 0%, transparent 30%),
+        linear-gradient(135deg, #fffaf7 0%, #fff0f3 100%);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+      color: #8b4a55;
+      font-size: 0.72rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(111, 61, 70, 0.10);
+      border: 1px solid rgba(207, 163, 170, 0.35);
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(3rem, 7vw, 6.1rem);
+      line-height: 0.95;
+      color: #2b1b1f;
+      margin-bottom: 28px;
+      letter-spacing: -2px;
+    }
+
+    h1 span {
+      color: #9d5965;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: #765d62;
+      font-size: 1.08rem;
+      margin-bottom: 34px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 26px;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: #6f3d46;
+      color: white;
+      box-shadow: 0 18px 40px rgba(111, 61, 70, 0.26);
+    }
+
+    .btn-secondary {
+      border: 1px solid #cfa3aa;
+      color: #6f3d46;
+      background: rgba(255, 255, 255, 0.75);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .beauty-card {
+      position: relative;
+      height: 540px;
+      border-radius: 42px;
+      background:
+        linear-gradient(rgba(43, 27, 31, 0.02), rgba(43, 27, 31, 0.16)),
+        url("https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1100&q=80");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 40px 90px rgba(111, 61, 70, 0.26);
+      transform: perspective(950px) rotateY(-7deg) rotateX(3deg);
+      border: 10px solid rgba(255, 255, 255, 0.45);
+    }
+
+    .beauty-card::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 32px;
+      pointer-events: none;
+    }
+
+    .floating-box {
+      position: absolute;
+      left: -28px;
+      bottom: 36px;
+      background: rgba(255,255,255,0.94);
+      padding: 22px;
+      border-radius: 26px;
+      box-shadow: 0 22px 55px rgba(43, 27, 31, 0.18);
+      max-width: 248px;
+      border: 1px solid rgba(207, 163, 170, 0.35);
+    }
+
+    .floating-box strong {
+      color: #6f3d46;
+      font-family: Georgia, serif;
+      font-size: 1.4rem;
+    }
+
+    .floating-box p {
+      font-size: 0.9rem;
+      margin: 6px 0 0;
+      color: #765d62;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 60px;
+    }
+
+    .section-title span {
+      color: #9d5965;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+
+    .section-title h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(2.25rem, 5vw, 4rem);
+      line-height: 1;
+      margin: 16px 0;
+      letter-spacing: -1px;
+    }
+
+    .section-title p {
+      color: #765d62;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      background: white;
+      border: 1px solid #f3d9dd;
+      padding: 34px 24px;
+      border-radius: 32px;
+      box-shadow: 0 20px 45px rgba(111, 61, 70, 0.07);
+      transition: 0.3s ease;
+      min-height: 235px;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 60px rgba(111, 61, 70, 0.12);
+    }
+
+    .icon {
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      font-family: Georgia, serif;
+      color: #6f3d46;
+      margin-bottom: 10px;
+      font-size: 1.35rem;
+    }
+
+    .service-card p {
+      color: #765d62;
+      font-size: 0.95rem;
+    }
+
+    .about {
+      background: white;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-img {
+      height: 500px;
+      border-radius: 38px;
+      background:
+        linear-gradient(rgba(43, 27, 31, 0.04), rgba(43, 27, 31, 0.12)),
+        url("https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1000&q=80");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 30px 70px rgba(111, 61, 70, 0.16);
+    }
+
+    .about h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1;
+      margin-bottom: 22px;
+      letter-spacing: -1px;
+    }
+
+    .about p {
+      color: #765d62;
+      margin-bottom: 18px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .stat {
+      background: #fff0f3;
+      padding: 20px;
+      border-radius: 24px;
+      text-align: center;
+      border: 1px solid rgba(207, 163, 170, 0.22);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: Georgia, serif;
+      color: #6f3d46;
+      font-size: 1.65rem;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: #765d62;
+      font-size: 0.86rem;
+    }
+
+    .feature-band {
+      background:
+        linear-gradient(135deg, rgba(111, 61, 70, 0.94), rgba(43, 27, 31, 0.96)),
+        url("https://images.unsplash.com/photo-1595475884562-073c30d45670?auto=format&fit=crop&w=1400&q=80");
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.08);
+      padding: 30px;
+      border-radius: 30px;
+    }
+
+    .feature-card h3 {
+      font-family: Georgia, serif;
+      font-size: 1.45rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 0.95rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .gallery-item {
+      height: 330px;
+      border-radius: 32px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 20px 50px rgba(111, 61, 70, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-item::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 22px;
+      bottom: 22px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      color: white;
+      background: rgba(43, 27, 31, 0.56);
+      backdrop-filter: blur(8px);
+      font-size: 0.76rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+
+    .g1 { background-image: url("https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?auto=format&fit=crop&w=900&q=80"); }
+    .g2 { background-image: url("https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=900&q=80");  }
+    .g3 { background-image: url("https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=900&q=80"); }
+
+    .reviews {
+      background: #2b1b1f;
+      color: white;
+    }
+
+    .reviews .section-title p,
+    .reviews .section-title span {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .review-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 30px;
+      border-radius: 30px;
+    }
+
+    .stars {
+      color: #ffd6df;
+      margin-bottom: 14px;
+      letter-spacing: 3px;
+    }
+
+    .review-card p {
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .review-card strong {
+      color: white;
+    }
+
+    .location-box {
+      background: white;
+      border-radius: 38px;
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 36px;
+      align-items: center;
+      box-shadow: 0 25px 60px rgba(111, 61, 70, 0.10);
+      border: 1px solid rgba(207, 163, 170, 0.28);
+    }
+
+    .location-box h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(2.4rem, 5vw, 3.75rem);
+      line-height: 1;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+
+    .location-text {
+      color: #765d62;
+      margin-bottom: 20px;
+    }
+
+    .address {
+      color: #6f3d46;
+      font-weight: bold;
+      margin-bottom: 28px;
+    }
+
+    .location-photo {
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(111,61,70,.18);
+      height: 430px;
+      position: relative;
+    }
+
+    .location-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .location-photo::after {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      color: white;
+      background: rgba(43, 27, 31, 0.58);
+      backdrop-filter: blur(8px);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: bold;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    footer {
+      padding: 36px 0;
+      text-align: center;
+      background: white;
+      color: #765d62;
+      border-top: 1px solid #f3d9dd;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 980px) {
+      .menu {
+        display: none;
+      }
+
+      .hero-grid,
+      .about-grid,
+      .location-box {
+        grid-template-columns: 1fr;
+      }
+
+      .beauty-card {
+        height: 430px;
+        transform: none;
+      }
+
+      .floating-box {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+        max-width: none;
+      }
+
+      .services,
+      .review-grid,
+      .gallery-grid,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .location-box {
+        padding: 26px;
+      }
+
+      .location-photo {
+        height: 330px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      nav {
+        height: 68px;
+      }
+
+      .logo {
+        font-size: 1.18rem;
+      }
+
+      .hero {
+        padding-top: 98px;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .beauty-card {
+        height: 360px;
+        border-radius: 30px;
+      }
+
+      .about-img,
+      .gallery-item {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#inicio" class="logo">Valeria Salón & Spa</a>
+
+        <div class="menu">
+          <a href="#servicios">Servicios</a>
+          <a href="#experiencia">Experiencia</a>
+          <a href="#galeria">Galería</a>
+          <a href="#ubicacion">Ubicación</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="tag">Belleza · Spa · Cuidado Personal</span>
+          <h1>Realza tu belleza con una experiencia <span>premium</span></h1>
+          <p>
+            En Valeria Salón y Spa cada detalle está pensado para que vivas un momento de cuidado,
+            confianza y renovación. Servicios de belleza, tratamientos y bienestar en un ambiente elegante.
+          </p>
+
+          <div class="actions">
+            <a href="#servicios" class="btn btn-primary">Ver servicios</a>
+            <a href="#ubicacion" class="btn btn-secondary">Conocer ubicación</a>
+          </div>
+        </div>
+
+        <div class="beauty-card">
+          <div class="floating-box">
+            <strong>4.6 ★</strong>
+            <p>Valoración destacada por clientas que buscan calidad, atención y resultados.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="container">
+        <div class="section-title">
+          <span>Nuestros servicios</span>
+          <h2>Todo lo que necesitas para verte y sentirte mejor</h2>
+          <p>Una selección de servicios diseñados para cuidar tu imagen con estilo, técnica y dedicación.</p>
+        </div>
+
+        <div class="services">
+          <article class="service-card">
+            <div class="icon">💇‍♀️</div>
+            <h3>Cabello</h3>
+            <p>Cortes, peinados, color, hidrataciones y cambios de look personalizados.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">💅</div>
+            <h3>Uñas</h3>
+            <p>Manicure, pedicure, esmaltado y diseños para una imagen impecable.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">✨</div>
+            <h3>Maquillaje</h3>
+            <p>Maquillaje social, eventos especiales y acabados elegantes para cada ocasión.</p>
+          </article>
+
+          <article class="service-card">
+            <div class="icon">🌸</div>
+            <h3>Spa</h3>
+            <p>Tratamientos de relajación y cuidado personal en un ambiente cómodo y femenino.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia" class="about">
+      <div class="container about-grid">
+        <div class="about-img"></div>
+
+        <div>
+          <span class="tag">Experiencia Valeria</span>
+          <h2>Más que un servicio, un momento para ti</h2>
+          <p>
+            Valeria Salón y Spa está pensado para mujeres que buscan verse bien, sentirse seguras y disfrutar
+            una atención cercana en un espacio agradable.
+          </p>
+          <p>
+            La experiencia combina estética, cuidado personal y detalles visuales que transmiten confianza desde
+            el primer momento.
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>4.6</strong>
+              <span>Valoración</span>
+            </div>
+            <div class="stat">
+              <strong>100+</strong>
+              <span>Reseñas</span>
+            </div>
+            <div class="stat">
+              <strong>Premium</strong>
+              <span>Experiencia</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-band">
+      <div class="container">
+        <div class="section-title">
+          <span>Cuidado profesional</span>
+          <h2>Una visita pensada para consentirte</h2>
+          <p>Desde el ambiente hasta el resultado final, cada elemento comunica belleza, calma y confianza.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Atención cercana</h3>
+            <p>Un trato amable que ayuda a que cada clienta se sienta cómoda desde que llega al salón.</p>
+          </article>
+
+          <article class="feature-card">
+            <h3>Ambiente femenino</h3>
+            <p>Un espacio visualmente agradable para disfrutar servicios de belleza y bienestar.</p>
+          </article>
+
+          <article class="feature-card">
+            <h3>Resultados visibles</h3>
+            <p>Servicios enfocados en destacar la imagen personal y crear una experiencia memorable.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria">
+      <div class="container">
+        <div class="section-title">
+          <span>Galería</span>
+          <h2>Inspiración visual para tu próximo cambio</h2>
+          <p>Un estilo limpio, femenino y moderno que comunica cuidado, belleza y confianza.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item g1" data-label="Cabello"></div>
+          <div class="gallery-item g2" data-label="Belleza"></div>
+          <div class="gallery-item g3" data-label="Estilo"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews">
+      <div class="container">
+        <div class="section-title">
+          <span>Confianza</span>
+          <h2>Lo que buscan las clientas</h2>
+          <p>Atención, resultados y una experiencia agradable desde que entran al local.</p>
+        </div>
+
+        <div class="review-grid">
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>“Excelente atención y un ambiente muy bonito. Ideal para consentirse.”</p>
+            <strong>Cliente satisfecha</strong>
+          </article>
+
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>“Me encantó el resultado. Se nota el cuidado en cada detalle.”</p>
+            <strong>Reseña destacada</strong>
+          </article>
+
+          <article class="review-card">
+            <div class="stars">★★★★★</div>
+            <p>“Un lugar cómodo, femenino y con servicios muy completos.”</p>
+            <strong>Experiencia positiva</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ubicacion">
+      <div class="container">
+        <div class="location-box">
+          <div>
+            <span class="tag">Ubicación</span>
+            <h2>Encuentra tu espacio de belleza y relajación</h2>
+            <p class="location-text">
+              Valeria Salón y Spa ofrece un ambiente femenino, elegante y cómodo, pensado para brindar una experiencia de belleza completa.
+            </p>
+
+            <p class="address">📍 Managua, Nicaragua</p>
+
+            <div class="actions">
+              <a href="https://maps.app.goo.gl/KxfVX1WwStHW3unm8" target="_blank" class="btn btn-primary">Abrir ubicación</a>
+              <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+            </div>
+          </div>
+
+          <div class="location-photo">
+            <img
+              src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1200&q=80"
+              alt="Interior elegante de salón de belleza"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Valeria Salón y Spa · Landing demo creada para portafolio académico</p>
+  </footer>
+</body>
+</html>

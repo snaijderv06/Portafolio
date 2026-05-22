@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DeLaFinca Coffee Lab | Camino Oriente</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/924/924514.png" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --espresso: #21140f;
+      --coffee: #5a3828;
+      --latte: #c99b72;
+      --cream: #fff8ee;
+      --ivory: #fffdf8;
+      --olive: #6f7b4f;
+      --gold: #d8ad63;
+      --soft: rgba(33, 20, 15, 0.68);
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--espresso);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1160px, 90%); margin: auto; }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+      background: rgba(255, 248, 238, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(90, 56, 40, 0.10);
+    }
+
+    nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-weight: bold;
+      font-size: 1.45rem;
+      color: var(--espresso);
+      letter-spacing: -0.8px;
+    }
+
+    .logo span { color: var(--olive); font-style: italic; }
+
+    .menu {
+      display: flex;
+      gap: 28px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      font-weight: bold;
+      color: rgba(33, 20, 15, 0.68);
+    }
+
+    .menu a {
+      position: relative;
+      transition: 0.25s ease;
+    }
+
+    .menu a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 2px;
+      border-radius: 20px;
+      background: var(--olive);
+      transition: 0.28s ease;
+    }
+
+    .menu a:hover { color: var(--espresso); }
+    .menu a:hover::after { width: 100%; }
+
+    .hero {
+      min-height: 100vh;
+      padding-top: 125px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(216, 173, 99, 0.24) 0%, transparent 30%),
+        radial-gradient(circle at 88% 78%, rgba(111, 123, 79, 0.18) 0%, transparent 32%),
+        linear-gradient(135deg, #fffdf8 0%, #fff2df 48%, #f2dac0 100%);
+    }
+
+    .hero::before {
+      content: "COFFEE LAB";
+      position: absolute;
+      right: -4vw;
+      bottom: 2vh;
+      font-family: Georgia, serif;
+      font-size: clamp(4rem, 14vw, 12rem);
+      font-weight: bold;
+      letter-spacing: -8px;
+      color: rgba(90, 56, 40, 0.055);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 48% 52% 42% 58% / 58% 42% 58% 42%;
+      background: rgba(111, 123, 79, 0.12);
+      left: -140px;
+      bottom: -140px;
+      transform: rotate(18deg);
+      animation: blob 8s ease-in-out infinite;
+    }
+
+    @keyframes blob {
+      0%, 100% { border-radius: 48% 52% 42% 58% / 58% 42% 58% 42%; transform: rotate(18deg) scale(1); }
+      50% { border-radius: 58% 42% 60% 40% / 44% 62% 38% 56%; transform: rotate(28deg) scale(1.05); }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 62px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(90, 56, 40, 0.12);
+      color: var(--olive);
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 0.7rem;
+      letter-spacing: 2.1px;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 30px rgba(90, 56, 40, 0.06);
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(3.2rem, 7.5vw, 6.7rem);
+      line-height: 0.92;
+      letter-spacing: -3px;
+      margin-bottom: 28px;
+    }
+
+    h1 span {
+      color: var(--olive);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero p {
+      max-width: 560px;
+      color: var(--soft);
+      font-size: 1.08rem;
+      margin-bottom: 34px;
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 26px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-weight: bold;
+      transition: 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+      transition: 0.55s ease;
+    }
+
+    .btn:hover::before { transform: translateX(100%); }
+
+    .btn-primary {
+      background: var(--espresso);
+      color: var(--cream);
+      box-shadow: 0 18px 38px rgba(33, 20, 15, 0.22);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(90, 56, 40, 0.18);
+      background: rgba(255,255,255,0.55);
+      color: var(--coffee);
+    }
+
+    .btn:hover { transform: translateY(-4px); }
+
+    .coffee-art {
+      position: relative;
+      min-height: 555px;
+    }
+
+    .main-photo {
+      position: absolute;
+      right: 0;
+      top: 18px;
+      width: 82%;
+      height: 500px;
+      border-radius: 46px;
+      background:
+        linear-gradient(to top, rgba(33,20,15,0.20), transparent),
+        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 38px 95px rgba(90, 56, 40, 0.25);
+      border: 10px solid rgba(255,255,255,0.55);
+      transform: rotate(2.4deg);
+      transition: 0.45s ease;
+      overflow: hidden;
+    }
+
+    .main-photo:hover { transform: rotate(0deg) translateY(-8px) scale(1.015); }
+
+    .main-photo::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(255,255,255,0.55);
+      border-radius: 34px;
+    }
+
+    .small-photo {
+      position: absolute;
+      width: 44%;
+      height: 240px;
+      left: 0;
+      bottom: 30px;
+      border-radius: 34px;
+      background: url("https://images.unsplash.com/photo-1511081692775-05d0f180a065?auto=format&fit=crop&w=900&q=80");
+      background-size: cover;
+      background-position: center;
+      border: 8px solid white;
+      box-shadow: 0 26px 60px rgba(90, 56, 40, 0.20);
+      transform: rotate(-6deg);
+      transition: 0.45s ease;
+      z-index: 3;
+    }
+
+    .small-photo:hover { transform: rotate(-1deg) translateY(-8px); }
+
+    .rating-card {
+      position: absolute;
+      right: 24px;
+      bottom: 20px;
+      width: 235px;
+      padding: 22px;
+      border-radius: 28px;
+      background: rgba(255, 253, 248, 0.92);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(90, 56, 40, 0.12);
+      box-shadow: 0 22px 55px rgba(90, 56, 40, 0.18);
+      z-index: 4;
+    }
+
+    .rating-card strong {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: 1.5rem;
+      color: var(--olive);
+      margin-bottom: 6px;
+    }
+
+    .rating-card p { color: var(--soft); font-size: 0.9rem; }
+
+    .bean {
+      position: absolute;
+      width: 34px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--coffee);
+      opacity: 0.18;
+      transform: rotate(24deg);
+      animation: floatBean 6s ease-in-out infinite;
+    }
+
+    .bean::after {
+      content: "";
+      position: absolute;
+      width: 3px;
+      height: 36px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.35);
+      left: 50%;
+      top: 8px;
+      transform: translateX(-50%) rotate(12deg);
+    }
+
+    .bean-1 { left: 8%; top: 20%; }
+    .bean-2 { right: 4%; top: 3%; animation-delay: 1.2s; }
+    .bean-3 { left: 38%; bottom: 6%; animation-delay: 2.4s; }
+
+    @keyframes floatBean {
+      0%, 100% { transform: translateY(0) rotate(24deg); }
+      50% { transform: translateY(-18px) rotate(38deg); }
+    }
+
+    section { padding: 100px 0; position: relative; }
+
+    .section-title {
+      max-width: 780px;
+      margin: 0 auto 60px;
+      text-align: center;
+    }
+
+    .section-title span {
+      color: var(--olive);
+      text-transform: uppercase;
+      letter-spacing: 2.2px;
+      font-size: 0.72rem;
+      font-weight: bold;
+    }
+
+    .section-title h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(2.45rem, 5.5vw, 4.6rem);
+      line-height: 0.98;
+      letter-spacing: -1.5px;
+      margin: 16px 0;
+    }
+
+    .section-title p { color: var(--soft); }
+
+    .experience-strip {
+      padding: 58px 0;
+      background: var(--espresso);
+      color: var(--cream);
+      overflow: hidden;
+    }
+
+    .strip-content {
+      display: flex;
+      gap: 28px;
+      white-space: nowrap;
+      animation: slideText 20s linear infinite;
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3.8rem);
+      color: rgba(255, 248, 238, 0.18);
+      font-style: italic;
+    }
+
+    .strip-content span:nth-child(even) {
+      color: rgba(216, 173, 99, 0.45);
+    }
+
+    @keyframes slideText {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      min-height: 270px;
+      border-radius: 34px;
+      background: rgba(255,255,255,0.64);
+      border: 1px solid rgba(90, 56, 40, 0.10);
+      box-shadow: 0 20px 55px rgba(90, 56, 40, 0.08);
+      padding: 30px;
+      transition: 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      right: -55px;
+      bottom: -55px;
+      background: rgba(111, 123, 79, 0.11);
+      transition: 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-12px) rotate(-1deg);
+      box-shadow: 0 30px 70px rgba(90, 56, 40, 0.13);
+      border-color: rgba(111, 123, 79, 0.28);
+    }
+
+    .card:hover::before {
+      transform: scale(1.35);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card h3 {
+      font-family: Georgia, serif;
+      font-size: 1.45rem;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card p {
+      color: var(--soft);
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .editorial {
+      background: var(--ivory);
+    }
+
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .editorial-text h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -2px;
+      margin-bottom: 22px;
+    }
+
+    .editorial-text p {
+      color: var(--soft);
+      margin-bottom: 18px;
+    }
+
+    .editorial-photo-wrap {
+      position: relative;
+      min-height: 535px;
+    }
+
+    .editorial-photo {
+      position: absolute;
+      border-radius: 42px;
+      background-size: cover;
+      background-position: center;
+      border: 10px solid white;
+      box-shadow: 0 30px 85px rgba(90, 56, 40, 0.18);
+      transition: 0.45s ease;
+    }
+
+    .editorial-photo:hover {
+      transform: rotate(0deg) scale(1.02);
+      z-index: 5;
+    }
+
+    .photo-a {
+      width: 72%;
+      height: 430px;
+      right: 0;
+      top: 0;
+      background-image: url("https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1000&q=80");
+      transform: rotate(2deg);
+    }
+
+    .photo-b {
+      width: 48%;
+      height: 265px;
+      left: 0;
+      bottom: 15px;
+      background-image: url("https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=900&q=80");
+      transform: rotate(-5deg);
+      z-index: 3;
+    }
+
+    .menu-section {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(216, 173, 99, 0.18), transparent 30%),
+        var(--espresso);
+      color: var(--cream);
+    }
+
+    .menu-section .section-title p { color: rgba(255,248,238,0.68); }
+    .menu-section .section-title span { color: var(--gold); }
+
+    .coffee-menu {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .menu-card {
+      border-radius: 36px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(216, 173, 99, 0.16);
+      overflow: hidden;
+      box-shadow: 0 28px 70px rgba(0,0,0,0.24);
+      transition: 0.35s ease;
+    }
+
+    .menu-card:nth-child(2) { transform: translateY(28px); }
+    .menu-card:hover { transform: translateY(-10px); border-color: rgba(216, 173, 99, 0.42); }
+    .menu-card:nth-child(2):hover { transform: translateY(18px); }
+
+    .menu-img {
+      height: 260px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .m1 { background-image: url("https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=900&q=80"); }
+    .m2 { background-image: url("https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=900&q=80"); }
+    .m3 { background-image: url("https://images.unsplash.com/photo-1523942839745-7848c839b661?auto=format&fit=crop&w=900&q=80"); }
+
+    .menu-body {
+      padding: 28px;
+    }
+
+    .menu-body h3 {
+      font-family: Georgia, serif;
+      font-size: 1.55rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .menu-body p { color: rgba(255,248,238,0.70); }
+
+    .gallery {
+      background: var(--cream);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+    }
+
+    .gallery-large,
+    .gallery-stack div {
+      border-radius: 38px;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 24px 65px rgba(90, 56, 40, 0.12);
+      transition: 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-large:hover,
+    .gallery-stack div:hover {
+      transform: scale(1.025);
+      box-shadow: 0 32px 80px rgba(90, 56, 40, 0.18);
+    }
+
+    .gallery-large::after,
+    .gallery-stack div::after {
+      content: attr(data-label);
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      padding: 10px 15px;
+      border-radius: 999px;
+      background: rgba(33,20,15,0.64);
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-size: 0.72rem;
+      font-weight: bold;
+      backdrop-filter: blur(10px);
+    }
+
+    .gallery-large {
+      height: 540px;
+      background-image: url("https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1100&q=80");
+    }
+
+    .gallery-stack {
+      display: grid;
+      gap: 22px;
+    }
+
+    .gallery-stack div { height: 259px; }
+    .g2 { background-image: url("https://images.unsplash.com/photo-1453614512568-c4024d13c247?auto=format&fit=crop&w=900&q=80"); }
+    .g3 { background-image: url("https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=900&q=80"); }
+
+    .reviews {
+      background: var(--ivory);
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .review-card {
+      padding: 32px;
+      border-radius: 34px;
+      background: white;
+      border: 1px solid rgba(90, 56, 40, 0.10);
+      box-shadow: 0 18px 48px rgba(90, 56, 40, 0.08);
+      transition: 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .review-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 28px 65px rgba(90, 56, 40, 0.12);
+    }
+
+    .review-card::before {
+      content: "★★★★★";
+      color: var(--gold);
+      letter-spacing: 3px;
+      font-size: 0.82rem;
+    }
+
+    .review-card p {
+      color: var(--soft);
+      margin: 18px 0 20px;
+      font-style: italic;
+    }
+
+    .review-card strong { color: var(--espresso); }
+
+    .location {
+      background: var(--espresso);
+      color: var(--cream);
+    }
+
+    .location-box {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 36px;
+      align-items: center;
+      padding: 46px;
+      border-radius: 42px;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(216,173,99,0.18), transparent 30%),
+        rgba(255,255,255,0.06);
+      border: 1px solid rgba(216, 173, 99, 0.16);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.22);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .location-box::before {
+      content: "MANAGUA";
+      position: absolute;
+      left: -20px;
+      bottom: -42px;
+      font-family: Georgia, serif;
+      font-size: 8rem;
+      font-weight: bold;
+      color: rgba(255,255,255,0.04);
+      letter-spacing: -5px;
+    }
+
+    .location-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .location-content h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -2px;
+      margin: 18px 0;
+    }
+
+    .location-content p {
+      color: rgba(255,248,238,0.70);
+      margin-bottom: 20px;
+    }
+
+    .address {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-size: 0.88rem;
+      font-weight: bold;
+      margin-bottom: 28px;
+    }
+
+    .location-photo {
+      height: 430px;
+      border-radius: 34px;
+      background:
+        linear-gradient(to top, rgba(33,20,15,0.25), transparent),
+        url("https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80");
+      background-size: cover;
+      background-position: center;
+      border: 8px solid rgba(255,255,255,0.08);
+      box-shadow: 0 28px 70px rgba(0,0,0,0.20);
+      transform: rotate(1.5deg);
+      transition: 0.35s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .location-photo:hover {
+      transform: rotate(0deg) scale(1.02);
+    }
+
+    .location-photo::after {
+      content: "Camino Oriente · Managua";
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(33,20,15,0.72);
+      color: white;
+      font-size: 0.72rem;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      font-weight: bold;
+      backdrop-filter: blur(10px);
+    }
+
+    footer {
+      padding: 38px 0;
+      text-align: center;
+      background: #140c09;
+      color: rgba(255,248,238,0.55);
+      border-top: 1px solid rgba(216,173,99,0.14);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 980px) {
+      .menu { display: none; }
+
+      .hero-grid,
+      .editorial-grid,
+      .gallery-grid,
+      .location-box {
+        grid-template-columns: 1fr;
+      }
+
+      .coffee-art,
+      .editorial-photo-wrap {
+        min-height: 450px;
+      }
+
+      .main-photo {
+        width: 100%;
+        height: 370px;
+        transform: none;
+      }
+
+      .small-photo,
+      .bean { display: none; }
+
+      .rating-card {
+        left: 20px;
+        right: 20px;
+        bottom: 30px;
+        width: auto;
+      }
+
+      .cards,
+      .coffee-menu,
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-card:nth-child(2) { transform: none; }
+      .menu-card:nth-child(2):hover { transform: translateY(-10px); }
+
+      .photo-a,
+      .photo-b {
+        position: relative;
+        width: 100%;
+        height: 320px;
+        transform: none;
+        margin-bottom: 20px;
+      }
+
+      .gallery-large,
+      .gallery-stack div {
+        height: 320px;
+      }
+
+      .location-box {
+        padding: 28px;
+      }
+
+      .location-photo {
+        height: 330px;
+        transform: none;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      nav { height: 68px; }
+      .logo { font-size: 1.08rem; }
+      .hero { padding-top: 98px; }
+      h1 { letter-spacing: -1.4px; }
+      .btn { width: 100%; }
+      .main-photo { border-radius: 32px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#inicio" class="logo">DeLaFinca <span>Coffee Lab</span></a>
+        <div class="menu">
+          <a href="#experiencia">Experiencia</a>
+          <a href="#menu">Café</a>
+          <a href="#galeria">Ambiente</a>
+          <a href="#ubicacion">Ubicación</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="tag">Specialty Coffee · Camino Oriente</span>
+          <h1>Café premium para momentos con <span>calma</span></h1>
+          <p>
+            DeLaFinca Coffee Lab Camino Oriente es un espacio para disfrutar café, conversar, trabajar y hacer una pausa con sabor especial en Managua.
+          </p>
+          <div class="actions">
+            <a href="#menu" class="btn btn-primary">Explorar café</a>
+            <a href="#ubicacion" class="btn btn-secondary">Cómo llegar</a>
+          </div>
+        </div>
+
+        <div class="coffee-art">
+          <div class="bean bean-1"></div>
+          <div class="bean bean-2"></div>
+          <div class="bean bean-3"></div>
+          <div class="main-photo"></div>
+          <div class="small-photo"></div>
+          <div class="rating-card">
+            <strong>4.7 ★</strong>
+            <p>Más de 500 reseñas respaldan una experiencia de café cómoda y bien valorada.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience-strip">
+      <div class="strip-content">
+        <span>Café de especialidad</span><span>Ambiente premium</span><span>Momentos con calma</span><span>Camino Oriente</span>
+        <span>Café de especialidad</span><span>Ambiente premium</span><span>Momentos con calma</span><span>Camino Oriente</span>
+      </div>
+    </section>
+
+    <section id="experiencia">
+      <div class="container">
+        <div class="section-title">
+          <span>Experiencia</span>
+          <h2>Un lugar para pausar, conversar y disfrutar mejor el día</h2>
+          <p>La landing transmite una experiencia premium, tranquila y moderna, ideal para un coffee shop con personalidad visual.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon">☕</div>
+            <h3>Café especial</h3>
+            <p>Bebidas calientes y frías pensadas para quienes disfrutan el sabor y el detalle.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">🌿</div>
+            <h3>Ambiente calmado</h3>
+            <p>Un espacio acogedor para reunirse, trabajar o tomar una pausa durante el día.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">🥐</div>
+            <h3>Acompañamientos</h3>
+            <p>Opciones para combinar con café y hacer más completa la experiencia.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">💻</div>
+            <h3>Work & coffee</h3>
+            <p>Ideal para quienes buscan un lugar cómodo para concentrarse o reunirse.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="editorial">
+      <div class="container editorial-grid">
+        <div class="editorial-text">
+          <span class="tag">Coffee lifestyle</span>
+          <h2>Diseñado para sentirse como una pausa premium</h2>
+          <p>
+            Un coffee shop no solo vende café: vende un momento. La estética limpia, los tonos cálidos y las microinteracciones ayudan a comunicar tranquilidad, calidad y confianza.
+          </p>
+          <p>
+            Esta propuesta visual funciona para negocios que quieren verse modernos, cuidadosos y memorables desde el primer vistazo.
+          </p>
+          <div class="actions">
+            <a href="#galeria" class="btn btn-primary">Ver ambiente</a>
+            <a href="#ubicacion" class="btn btn-secondary">Ubicación</a>
+          </div>
+        </div>
+
+        <div class="editorial-photo-wrap">
+          <div class="editorial-photo photo-a"></div>
+          <div class="editorial-photo photo-b"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="menu-section">
+      <div class="container">
+        <div class="section-title">
+          <span>Especialidades</span>
+          <h2>Café, aroma y detalles que hacen volver</h2>
+          <p>Una sección visual para presentar las bebidas principales sin convertir la landing en un menú cargado.</p>
+        </div>
+
+        <div class="coffee-menu">
+          <article class="menu-card">
+            <div class="menu-img m1"></div>
+            <div class="menu-body">
+              <h3>Espresso & clásicos</h3>
+              <p>Sabores intensos para quienes prefieren una experiencia directa y elegante.</p>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-img m2"></div>
+            <div class="menu-body">
+              <h3>Cold coffee</h3>
+              <p>Bebidas frías para disfrutar el café con una sensación más fresca y moderna.</p>
+            </div>
+          </article>
+
+          <article class="menu-card">
+            <div class="menu-img m3"></div>
+            <div class="menu-body">
+              <h3>Sweet moments</h3>
+              <p>Opciones dulces para acompañar una pausa, una charla o una tarde tranquila.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria" class="gallery">
+      <div class="container">
+        <div class="section-title">
+          <span>Ambiente</span>
+          <h2>Un espacio que se siente cómodo antes de llegar</h2>
+          <p>El diseño tipo editorial permite vender la experiencia visual del local, no solo el producto.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-large" data-label="Coffee shop"></div>
+          <div class="gallery-stack">
+            <div class="g2" data-label="Ambiente"></div>
+            <div class="g3" data-label="Café"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews">
+      <div class="container">
+        <div class="section-title">
+          <span>Confianza</span>
+          <h2>Lo que valoran quienes buscan buen café</h2>
+          <p>Un ambiente cómodo, buena atención y una experiencia que invita a regresar.</p>
+        </div>
+
+        <div class="review-grid">
+          <article class="review-card">
+            <p>“Un café perfecto para conversar, trabajar o simplemente disfrutar una pausa.”</p>
+            <strong>Cliente satisfecho</strong>
+          </article>
+
+          <article class="review-card">
+            <p>“El ambiente es muy agradable y la experiencia se siente cuidada.”</p>
+            <strong>Reseña destacada</strong>
+          </article>
+
+          <article class="review-card">
+            <p>“Buen lugar para tomar café y pasar un rato tranquilo en Managua.”</p>
+            <strong>Experiencia positiva</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ubicacion" class="location">
+      <div class="container">
+        <div class="location-box">
+          <div class="location-content">
+            <span class="tag">Ubicación</span>
+            <h2>Encuentra DeLaFinca en Camino Oriente</h2>
+            <p>
+              Una parada ideal para quienes buscan café de especialidad, ambiente agradable y una pausa diferente en Managua.
+            </p>
+            <p class="address">📍 Camino Oriente, Managua 14157, Nicaragua</p>
+            <div class="actions">
+              <a href="https://www.google.com/maps/place/DeLaFinca+COFFEE+LAB+CAMINO+ORIENTE/@12.1107101,-86.2534216,17z/data=!3m1!4b1!4m6!3m5!1s0x8f73ffe8b86d4d6b:0x187148edf1a35a5b!8m2!3d12.1107101!4d-86.2534216!16s%2Fg%2F11kf53rjnz?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn btn-primary">Abrir ubicación</a>
+              <a href="#menu" class="btn btn-secondary">Ver café</a>
+            </div>
+          </div>
+
+          <div class="location-photo"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 DeLaFinca Coffee Lab Camino Oriente · Landing demo creada para portafolio académico</p>
+  </footer>
+</body>
+</html>
