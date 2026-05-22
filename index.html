@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portafolio David Oporta | Landing Pages</title>
+
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1055/1055687.png">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+:root{
+    --dark:#0f172a;
+    --card:#1e293b;
+    --gold:#d4af37;
+    --text:#f8fafc;
+    --gray:#94a3b8;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:
+    radial-gradient(circle at top left,#1e293b 0%,transparent 30%),
+    radial-gradient(circle at bottom right,#3b0764 0%,transparent 30%),
+    #020617;
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size:40px 40px;
+    pointer-events:none;
+}
+
+.container{
+    width:min(1200px,90%);
+    margin:auto;
+}
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+}
+
+.glow{
+    position:absolute;
+    width:400px;
+    height:400px;
+    border-radius:50%;
+    background:#7c3aed;
+    filter:blur(120px);
+    opacity:.15;
+}
+
+.glow1{
+    top:-100px;
+    left:-100px;
+}
+
+.glow2{
+    right:-100px;
+    bottom:-100px;
+    background:#2563eb;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.tag{
+    display:inline-block;
+    padding:10px 20px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.15);
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
+    margin-bottom:25px;
+    color:#cbd5e1;
+    font-size:.8rem;
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
+
+h1{
+    font-size:clamp(3rem,8vw,6rem);
+    line-height:.95;
+    margin-bottom:20px;
+}
+
+h1 span{
+    color:var(--gold);
+}
+
+.subtitle{
+    max-width:800px;
+    margin:auto;
+    color:var(--gray);
+    font-size:1.1rem;
+    margin-bottom:40px;
+}
+
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+}
+
+.stat{
+    padding:18px 30px;
+    border-radius:25px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(15px);
+}
+
+.stat strong{
+    display:block;
+    font-size:1.5rem;
+    color:var(--gold);
+}
+
+.projects{
+    padding:100px 0;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.section-title h2{
+    font-size:3rem;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:var(--gray);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:35px;
+    overflow:hidden;
+    transition:.4s ease;
+    position:relative;
+    backdrop-filter:blur(18px);
+}
+
+.card:hover{
+    transform:translateY(-15px);
+    box-shadow:0 0 60px rgba(255,255,255,.08);
+}
+
+.image{
+    height:240px;
+    background-size:cover;
+    background-position:center;
+}
+
+.card-content{
+    padding:30px;
+}
+
+.card h3{
+    font-size:1.6rem;
+    margin-bottom:10px;
+}
+
+.card p{
+    color:var(--gray);
+    margin-bottom:25px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px 24px;
+    border-radius:999px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    transition:.3s;
+    background:linear-gradient(
+    135deg,
+    #7c3aed,
+    #2563eb
+    );
+}
+
+.btn:hover{
+    transform:scale(1.05);
+}
+
+footer{
+    padding:40px;
+    text-align:center;
+    color:var(--gray);
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+@media(max-width:768px){
+
+.stats{
+flex-direction:column;
+align-items:center;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
+<div class="container hero-content">
+
+<span class="tag">
+Portafolio de Landing Pages
+</span>
+
+<h1>
+Landing Pages para
+<span>Negocios Reales</span>
+de Nicaragua
+</h1>
+
+<p class="subtitle">
+Colección de demos creadas para negocios reales sin presencia web profesional,
+con enfoque en UI/UX, storytelling visual, interactividad y experiencia moderna.
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<strong>5</strong>
+Landing Pages
+</div>
+
+<div class="stat">
+<strong>100%</strong>
+HTML + CSS
+</div>
+
+<div class="stat">
+<strong>UI/UX</strong>
+Premium
+</div>
+
+</div>
+
+</div>
+</section>
+
+<section class="projects">
+
+<div class="container">
+
+<div class="section-title">
+<h2>Negocios seleccionados</h2>
+<p>Haz clic en cualquier demo para explorar la landing.</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="image" style="background-image:url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200');"></div>
+<div class="card-content">
+<h3>Valeria Salón & Spa</h3>
+<p>Landing femenina premium enfocada en belleza y experiencia visual.</p>
+<a class="btn" href="Demos/valeria-salon-spa.html">Ver Demo</a>
+</div>
+</div>
+
+<div class="card">
+<div class="image" style="background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200');"></div>
+<div class="card-content">
+<h3>Taska Kiko</h3>
+<p>Experiencia gastronómica elegante con storytelling visual.</p>
+<a class="btn" href="Demos/taska-kiko.html">Ver Demo</a>
+</div>
+</div>
+
+<div class="card">
+<div class="image" style="background-image:url('https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1200');"></div>
+<div class="card-content">
+<h3>Ron Kon Rolas</h3>
+<p>Landing neon rock con interacción visual y energía nocturna.</p>
+<a class="btn" href="Demos/ron-kon-rolas.html">Ver Demo</a>
+</div>
+</div>
+
+<div class="card">
+<div class="image" style="background-image:url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200');"></div>
+<div class="card-content">
+<h3>DeLaFinca Coffee Lab</h3>
+<p>Diseño premium minimalista tipo specialty coffee experience.</p>
+<a class="btn" href="Demos/delafinca-coffee-lab.html">Ver Demo</a>
+</div>
+</div>
+
+<div class="card">
+<div class="image" style="background-image:url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=1200');"></div>
+<div class="card-content">
+<h3>Hospital Veterinario Especies</h3>
+<p>Experiencia emocional premium enfocada en confianza veterinaria.</p>
+<a class="btn" href="Demos/hospital-veterinario-especies.html">
+Ver Demo
+</a>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<footer>
+Portafolio Snaijder · Landing Pages para negocios reales de Nicaragua · 2026
+</footer>
+
+</body>
+</html>
